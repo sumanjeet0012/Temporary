@@ -2,8 +2,4 @@ https://grok.com/share/c2hhcmQtMw%3D%3D_7d9914be-9eec-4eef-813a-fbcc37539c17
 
 https://docs.google.com/document/d/1b80cfDDlEZ6irEe5ERU3cNfxenCe5HQOA98wgIghGkA/edit?usp=drivesdk
 
-
-https://prod.liveshare.vsengsaas.visualstudio.com/join?74CC5456839B31436BAD5F7E305E7AD465E2
-
-
-https://prod.liveshare.vsengsaas.visualstudio.com/join?97812B8307DBB0D80C5EF0CDE3392385D022
+https://prod.liveshare.vsengsaas.visualstudio.com/join?1AC9B5CD864E59947FC908A8418F0EBD6C31
