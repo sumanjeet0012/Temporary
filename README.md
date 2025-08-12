@@ -4,3 +4,4 @@ https://docs.google.com/document/d/1b80cfDDlEZ6irEe5ERU3cNfxenCe5HQOA98wgIghGkA/
 
 https://prod.liveshare.vsengsaas.visualstudio.com/join?1AC9B5CD864E59947FC908A8418F0EBD6C31
 https://prod.liveshare.vsengsaas.visualstudio.com/join?EAEEBB85364A6A84F11AE1577D8EB0A85CA7
+https://prod.liveshare.vsengsaas.visualstudio.com/join?25F628F53D91FD70A9DB4CA4FBD948FAD862
