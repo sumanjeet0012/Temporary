@@ -1,9 +1,1 @@
-https://grok.com/share/c2hhcmQtMw%3D%3D_7d9914be-9eec-4eef-813a-fbcc37539c17
-
-https://docs.google.com/document/d/1b80cfDDlEZ6irEe5ERU3cNfxenCe5HQOA98wgIghGkA/edit?usp=drivesdk
-
-
-https://prod.liveshare.vsengsaas.visualstudio.com/join?6124A38ABB523175AC673102DD28895F98D1
-https://prod.liveshare.vsengsaas.visualstudio.com/join?A91845AE654B346CA9161AA4BC25DF937D5E
-https://prod.liveshare.vsengsaas.visualstudio.com/join?C8F31E167DC4B7C4C1A4383E8F222522F32B
-https://prod.liveshare.vsengsaas.visualstudio.com/join?9F1E56A44E9D70E1B2FB530A98AEAB568A6A
+https://prod.liveshare.vsengsaas.visualstudio.com/join?BEC32340EF37C2D3114DD1D2E7717496CC45
