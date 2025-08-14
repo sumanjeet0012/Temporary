@@ -6,3 +6,4 @@ https://docs.google.com/document/d/1b80cfDDlEZ6irEe5ERU3cNfxenCe5HQOA98wgIghGkA/
 https://prod.liveshare.vsengsaas.visualstudio.com/join?6124A38ABB523175AC673102DD28895F98D1
 https://prod.liveshare.vsengsaas.visualstudio.com/join?A91845AE654B346CA9161AA4BC25DF937D5E
 https://prod.liveshare.vsengsaas.visualstudio.com/join?C8F31E167DC4B7C4C1A4383E8F222522F32B
+https://prod.liveshare.vsengsaas.visualstudio.com/join?9F1E56A44E9D70E1B2FB530A98AEAB568A6A
