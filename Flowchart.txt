@@ -1,0 +1,121 @@
+graph TB
+    subgraph "Application Layer"
+        APP["Application"]
+        APP --> |"subscribe(topic)"| PUBSUB
+        APP --> |"publish(topic, data)"| PUBSUB
+        APP --> |"unsubscribe(topic)"| PUBSUB
+        PUBSUB --> |"message_received"| APP
+    end
+
+    subgraph "PubSub Core Module"
+        PUBSUB["PubSub Instance"]
+        PUBSUB --> |"initialize"| ROUTER_FACTORY["Router Factory"]
+        ROUTER_FACTORY --> |"create"| ROUTER["Message Router<br/>(FloodSub/GossipSub)"]
+        
+        PUBSUB --> PEER_MGR["Peer Manager"]
+        PUBSUB --> MSG_CACHE["Message Cache<br/>(TTL-based)"]
+        PUBSUB --> TOPIC_SUB["Topic Subscriptions<br/>Map[topic -> Set[peer_id]]"]
+        PUBSUB --> VALIDATOR["Message Validator"]
+    end
+
+    subgraph "Message Router Layer"
+        ROUTER --> |"implements"| ROUTER_INTERFACE["IRouter Interface"]
+        
+        subgraph "FloodSub Implementation"
+            FLOODSUB["FloodSub Router"]
+            FLOODSUB --> |"flood to all peers"| FLOOD_LOGIC["Flooding Logic<br/>- Forward to all known peers<br/>- Avoid back-propagation<br/>- Use message cache"]
+        end
+        
+        subgraph "GossipSub Implementation"
+            GOSSIPSUB["GossipSub Router"]
+            GOSSIPSUB --> MESH_MGR["Mesh Manager<br/>- Topic mesh maintenance<br/>- Peer scoring<br/>- Grafting/Pruning"]
+            GOSSIPSUB --> GOSSIP_MGR["Gossip Manager<br/>- IHAVE/IWANT handling<br/>- Message metadata exchange"]
+            GOSSIPSUB --> HEARTBEAT["Heartbeat Timer<br/>- Periodic maintenance<br/>- Peer health checks"]
+        end
+    end
+
+    subgraph "Network Protocol Layer"
+        STREAM_MGR["Stream Manager"]
+        PROTO_HANDLER["Protocol Handler<br/>/floodsub/1.0.0<br/>/meshsub/1.0.0"]
+        RPC_HANDLER["RPC Message Handler"]
+        
+        STREAM_MGR --> |"manage streams"| PROTO_HANDLER
+        PROTO_HANDLER --> |"decode/encode"| RPC_HANDLER
+    end
+
+    subgraph "Message Processing Flow"
+        INCOMING["Incoming RPC Message"]
+        INCOMING --> MSG_DECODE["Message Decode<br/>- Parse protobuf<br/>- Extract subscriptions<br/>- Extract publications"]
+        
+        MSG_DECODE --> SUB_HANDLER["Subscription Handler"]
+        MSG_DECODE --> PUB_HANDLER["Publication Handler"]
+        MSG_DECODE --> CONTROL_HANDLER["Control Message Handler<br/>(GossipSub only)"]
+        
+        SUB_HANDLER --> |"update topic map"| TOPIC_SUB
+        
+        PUB_HANDLER --> MSG_VALIDATE["Message Validation<br/>- Signature check<br/>- Format validation<br/>- Custom validators"]
+        MSG_VALIDATE --> |"valid"| MSG_CACHE
+        MSG_VALIDATE --> |"invalid"| DROP["Drop Message"]
+        
+        MSG_CACHE --> |"not seen before"| ROUTER_PROCESS["Router Processing"]
+        MSG_CACHE --> |"already seen"| DROP
+        
+        ROUTER_PROCESS --> FORWARD_DECISION["Forwarding Decision<br/>- Select target peers<br/>- Apply routing strategy"]
+        FORWARD_DECISION --> SEND_MSG["Send to Selected Peers"]
+        ROUTER_PROCESS --> |"local subscription"| DELIVER_LOCAL["Deliver to Local App"]
+    end
+
+    subgraph "Peer Management"
+        PEER_MGR --> PEER_DISCOVERY["Peer Discovery"]
+        PEER_MGR --> CONN_MGR["Connection Manager"]
+        PEER_MGR --> PEER_STORE["Peer Store<br/>- Peer info<br/>- Protocol support<br/>- Connection status"]
+        
+        CONN_MGR --> |"new peer"| PROTOCOL_NEG["Protocol Negotiation"]
+        PROTOCOL_NEG --> |"supports pubsub"| PEER_HANDSHAKE["PubSub Handshake"]
+        PEER_HANDSHAKE --> |"exchange subscriptions"| TOPIC_SUB
+    end
+
+    subgraph "Message Types & Structures"
+        subgraph "RPC Message Structure"
+            RPC["RPC Message"]
+            RPC --> SUBS["Subscriptions[]<br/>- topic<br/>- subscribe/unsubscribe"]
+            RPC --> PUBLISH["Publications[]<br/>- topic<br/>- data<br/>- from<br/>- seqno<br/>- signature"]
+            RPC --> CONTROL["Control (GossipSub)<br/>- IHAVE<br/>- IWANT<br/>- GRAFT<br/>- PRUNE"]
+        end
+        
+        subgraph "Internal Message Events"
+            PUB_EVENT["PublishEvent"]
+            SUB_EVENT["SubscriptionEvent"] 
+            PEER_EVENT["PeerEvent<br/>- JOIN<br/>- LEAVE"]
+        end
+    end
+
+    subgraph "Network Transport Layer"
+        LIBP2P_HOST["libp2p Host"]
+        TRANSPORT["Transport Layer<br/>(TCP/QUIC/WebSocket)"]
+        SECURITY["Security Layer<br/>(Noise/TLS)"]
+        MUXER["Stream Multiplexer<br/>(yamux/mplex)"]
+        
+        LIBP2P_HOST --> TRANSPORT
+        TRANSPORT --> SECURITY
+        SECURITY --> MUXER
+        MUXER --> STREAM_MGR
+    end
+
+    %% Flow connections
+    ROUTER --> STREAM_MGR
+    SEND_MSG --> RPC_HANDLER
+    RPC_HANDLER --> PROTO_HANDLER
+    DELIVER_LOCAL --> APP
+    
+    %% Styling
+    classDef appLayer fill:#e1f5fe
+    classDef coreLayer fill:#f3e5f5
+    classDef routerLayer fill:#e8f5e8
+    classDef networkLayer fill:#fff3e0
+    classDef messageLayer fill:#fce4ec
+    
+    class APP,PUBSUB appLayer
+    class ROUTER,FLOODSUB,GOSSIPSUB,MESH_MGR,GOSSIP_MGR,HEARTBEAT routerLayer
+    class STREAM_MGR,PROTO_HANDLER,RPC_HANDLER,LIBP2P_HOST,TRANSPORT,SECURITY,MUXER networkLayer
+    class RPC,SUBS,PUBLISH,CONTROL,PUB_EVENT,SUB_EVENT,PEER_EVENT messageLayer
