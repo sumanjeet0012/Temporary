@@ -1,0 +1,226 @@
+LUCIFER007 E:\py-libp2p feat/804-add-thin-waist-address ≡ 7.3s
+py-libp2p > pip install -e .
+Obtaining file:///E:/py-libp2p
+  Installing build dependencies ... done
+  Checking if build backend supports build_editable ... done
+  Getting requirements to build editable ... done
+  Preparing editable metadata (pyproject.toml) ... done
+Collecting base58>=1.0.3 (from libp2p==0.2.9)
+  Using cached base58-2.1.1-py3-none-any.whl.metadata (3.1 kB)
+Collecting coincurve>=10.0.0 (from libp2p==0.2.9)
+  Using cached coincurve-21.0.0-cp313-cp313-win_amd64.whl.metadata (4.0 kB)
+Collecting grpcio>=1.41.0 (from libp2p==0.2.9)
+  Using cached grpcio-1.74.0-cp313-cp313-win_amd64.whl.metadata (4.0 kB)
+Collecting lru-dict>=1.1.6 (from libp2p==0.2.9)
+  Using cached lru-dict-1.3.0.tar.gz (13 kB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Collecting multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6 (from libp2p==0.2.9)
+  Using cached multiaddr-0.0.9-py3-none-any.whl
+Collecting mypy-protobuf>=3.0.0 (from libp2p==0.2.9)
+  Using cached mypy_protobuf-3.6.0-py3-none-any.whl.metadata (466 bytes)
+Collecting noiseprotocol>=0.3.0 (from libp2p==0.2.9)
+  Using cached noiseprotocol-0.3.1-py3-none-any.whl.metadata (1.0 kB)
+Collecting protobuf<5.0.0,>=4.25.0 (from libp2p==0.2.9)
+  Using cached protobuf-4.25.8-cp310-abi3-win_amd64.whl.metadata (541 bytes)
+Collecting pycryptodome>=3.9.2 (from libp2p==0.2.9)
+  Using cached pycryptodome-3.23.0-cp37-abi3-win_amd64.whl.metadata (3.5 kB)
+Collecting pymultihash>=0.8.2 (from libp2p==0.2.9)
+  Using cached pymultihash-0.8.2-py3-none-any.whl.metadata (1.8 kB)
+Collecting pynacl>=1.3.0 (from libp2p==0.2.9)
+  Using cached PyNaCl-1.5.0-cp36-abi3-win_amd64.whl.metadata (8.7 kB)
+Collecting rpcudp>=3.0.0 (from libp2p==0.2.9)
+  Using cached rpcudp-5.0.1-py3-none-any.whl.metadata (4.1 kB)
+Collecting trio-typing>=0.0.4 (from libp2p==0.2.9)
+  Using cached trio_typing-0.10.0-py3-none-any.whl.metadata (10 kB)
+Collecting trio>=0.26.0 (from libp2p==0.2.9)
+  Using cached trio-0.30.0-py3-none-any.whl.metadata (8.5 kB)
+Collecting zeroconf<0.148.0,>=0.147.0 (from libp2p==0.2.9)
+  Using cached zeroconf-0.147.0-cp313-cp313-win_amd64.whl.metadata (6.2 kB)
+Collecting dnspython>=2.7.0 (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached dnspython-2.7.0-py3-none-any.whl.metadata (5.8 kB)
+Collecting idna (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting netaddr (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached netaddr-1.3.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting psutil (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached psutil-7.0.0-cp37-abi3-win_amd64.whl.metadata (23 kB)
+Collecting py-cid@ git+https://github.com/acul71/py-cid-fork.git (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Cloning https://github.com/acul71/py-cid-fork.git to c:\users\yashk\appdata\local\temp\pip-install-ygrd62ot\py-cid_23a500d4621d4e17a6bc4e859b435d22
+  Running command git clone --filter=blob:none --quiet https://github.com/acul71/py-cid-fork.git 'C:\Users\yashk\AppData\Local\Temp\pip-install-ygrd62ot\py-cid_23a500d4621d4e17a6bc4e859b435d22'
+  warning: templates not found in $git_templates_dir
+  Resolved https://github.com/acul71/py-cid-fork.git to commit 50bae4a6f7040dca6cb5d6db432be66df3ca6b1e
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Collecting py-multicodec>=0.2.0 (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached py_multicodec-0.2.1-py2.py3-none-any.whl.metadata (3.2 kB)
+Collecting varint (from multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached varint-1.0.2-py3-none-any.whl
+Collecting base58>=1.0.3 (from libp2p==0.2.9)
+  Using cached base58-1.0.3-py3-none-any.whl.metadata (565 bytes)
+Collecting py-multibase<2.0.0,>=1.0.0 (from py-cid@ git+https://github.com/acul71/py-cid-fork.git->multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached py_multibase-1.0.3-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting morphys<2.0,>=1.0 (from py-cid@ git+https://github.com/acul71/py-cid-fork.git->multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached morphys-1.0-py2.py3-none-any.whl.metadata (3.3 kB)
+Collecting python-baseconv<2.0,>=1.2.0 (from py-multibase<2.0.0,>=1.0.0->py-cid@ git+https://github.com/acul71/py-cid-fork.git->multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached python_baseconv-1.2.2-py3-none-any.whl
+Collecting six<2.0,>=1.10.0 (from py-multibase<2.0.0,>=1.0.0->py-cid@ git+https://github.com/acul71/py-cid-fork.git->multiaddr@ git+https://github.com/multiformats/py-multiaddr.git@db8124e2321f316d3b7d2733c7df11d6ad9c03e6->libp2p==0.2.9)
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting ifaddr>=0.1.7 (from zeroconf<0.148.0,>=0.147.0->libp2p==0.2.9)
+  Using cached ifaddr-0.2.0-py3-none-any.whl.metadata (4.9 kB)
+Collecting types-protobuf>=4.24 (from mypy-protobuf>=3.0.0->libp2p==0.2.9)
+  Using cached types_protobuf-6.30.2.20250809-py3-none-any.whl.metadata (2.2 kB)
+Collecting cryptography>=2.8 (from noiseprotocol>=0.3.0->libp2p==0.2.9)
+  Using cached cryptography-45.0.6-cp311-abi3-win_amd64.whl.metadata (5.7 kB)
+Collecting cffi>=1.14 (from cryptography>=2.8->noiseprotocol>=0.3.0->libp2p==0.2.9)
+  Using cached cffi-1.17.1-cp313-cp313-win_amd64.whl.metadata (1.6 kB)
+Collecting pycparser (from cffi>=1.14->cryptography>=2.8->noiseprotocol>=0.3.0->libp2p==0.2.9)
+  Using cached pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+Collecting u-msgpack-python>=2.6 (from rpcudp>=3.0.0->libp2p==0.2.9)
+  Using cached u_msgpack_python-2.8.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting attrs>=23.2.0 (from trio>=0.26.0->libp2p==0.2.9)
+  Using cached attrs-25.3.0-py3-none-any.whl.metadata (10 kB)
+Collecting sortedcontainers (from trio>=0.26.0->libp2p==0.2.9)
+  Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+Collecting outcome (from trio>=0.26.0->libp2p==0.2.9)
+  Using cached outcome-1.3.0.post0-py2.py3-none-any.whl.metadata (2.6 kB)
+Collecting sniffio>=1.3.0 (from trio>=0.26.0->libp2p==0.2.9)
+  Using cached sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting typing-extensions>=3.7.4 (from trio-typing>=0.0.4->libp2p==0.2.9)
+  Using cached typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting mypy-extensions>=0.4.2 (from trio-typing>=0.0.4->libp2p==0.2.9)
+  Using cached mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting async-generator (from trio-typing>=0.0.4->libp2p==0.2.9)
+  Using cached async_generator-1.10-py3-none-any.whl.metadata (4.9 kB)
+Collecting packaging (from trio-typing>=0.0.4->libp2p==0.2.9)
+  Using cached packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting importlib-metadata (from trio-typing>=0.0.4->libp2p==0.2.9)
+  Using cached importlib_metadata-8.7.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting zipp>=3.20 (from importlib-metadata->trio-typing>=0.0.4->libp2p==0.2.9)
+  Using cached zipp-3.23.0-py3-none-any.whl.metadata (3.6 kB)
+Using cached base58-1.0.3-py3-none-any.whl (3.1 kB)
+Using cached morphys-1.0-py2.py3-none-any.whl (5.6 kB)
+Using cached protobuf-4.25.8-cp310-abi3-win_amd64.whl (413 kB)
+Using cached py_multibase-1.0.3-py2.py3-none-any.whl (6.4 kB)
+Using cached py_multicodec-0.2.1-py2.py3-none-any.whl (8.5 kB)
+Using cached pymultihash-0.8.2-py3-none-any.whl (13 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached zeroconf-0.147.0-cp313-cp313-win_amd64.whl (1.7 MB)
+Using cached coincurve-21.0.0-cp313-cp313-win_amd64.whl (1.3 MB)
+Using cached dnspython-2.7.0-py3-none-any.whl (313 kB)
+Using cached grpcio-1.74.0-cp313-cp313-win_amd64.whl (4.5 MB)
+Using cached ifaddr-0.2.0-py3-none-any.whl (12 kB)
+Using cached mypy_protobuf-3.6.0-py3-none-any.whl (16 kB)
+Using cached noiseprotocol-0.3.1-py3-none-any.whl (20 kB)
+Using cached cryptography-45.0.6-cp311-abi3-win_amd64.whl (3.4 MB)
+Using cached cffi-1.17.1-cp313-cp313-win_amd64.whl (182 kB)
+Using cached pycryptodome-3.23.0-cp37-abi3-win_amd64.whl (1.8 MB)
+Using cached PyNaCl-1.5.0-cp36-abi3-win_amd64.whl (212 kB)
+Using cached rpcudp-5.0.1-py3-none-any.whl (5.6 kB)
+Using cached trio-0.30.0-py3-none-any.whl (499 kB)
+Using cached attrs-25.3.0-py3-none-any.whl (63 kB)
+Using cached sniffio-1.3.1-py3-none-any.whl (10 kB)
+Using cached trio_typing-0.10.0-py3-none-any.whl (42 kB)
+Using cached mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Using cached types_protobuf-6.30.2.20250809-py3-none-any.whl (76 kB)
+Using cached typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+Using cached u_msgpack_python-2.8.0-py2.py3-none-any.whl (10 kB)
+Using cached async_generator-1.10-py3-none-any.whl (18 kB)
+Using cached idna-3.10-py3-none-any.whl (70 kB)
+Using cached importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+Using cached zipp-3.23.0-py3-none-any.whl (10 kB)
+Using cached netaddr-1.3.0-py3-none-any.whl (2.3 MB)
+Using cached outcome-1.3.0.post0-py2.py3-none-any.whl (10 kB)
+Using cached packaging-25.0-py3-none-any.whl (66 kB)
+Using cached psutil-7.0.0-cp37-abi3-win_amd64.whl (244 kB)
+Using cached pycparser-2.22-py3-none-any.whl (117 kB)
+Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+Building wheels for collected packages: libp2p, py-cid, lru-dict
+  Building editable for libp2p (pyproject.toml) ... done
+  Created wheel for libp2p: filename=libp2p-0.2.9-0.editable-py3-none-any.whl size=8488 sha256=3da4c49992800b626b6fb03ae9b2fa643843080e0349aad6e5b2080e3a082552
+  Stored in directory: C:\Users\yashk\AppData\Local\Temp\pip-ephem-wheel-cache-59w3q478\wheels\07\d4\dc\cf9f29a88d0f8cf0dbf9720ea0ad8ce4341c23a4c78c7886cb
+  Building wheel for py-cid (pyproject.toml) ... done
+  Created wheel for py-cid: filename=py_cid-0.3.0-py2.py3-none-any.whl size=6626 sha256=942c885c068a7a985dc87f9d0dee12d86f500d56745f3783f5ced819f8914b3b
+  Stored in directory: C:\Users\yashk\AppData\Local\Temp\pip-ephem-wheel-cache-59w3q478\wheels\ed\93\ec\6215cebd178054d690e135470add56e377a087ce844e892674
+  Building wheel for lru-dict (pyproject.toml) ... error
+  error: subprocess-exited-with-error
+
+  × Building wheel for lru-dict (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [62 lines of output]
+      C:\Users\yashk\AppData\Local\Temp\pip-build-env-ug6mk94b\overlay\Lib\site-packages\setuptools\config\_apply_pyprojecttoml.py:82: SetuptoolsDeprecationWarning: `project.license` as a TOML table is deprecated
+      !!
+
+              ********************************************************************************
+              Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+              By 2026-Feb-18, you need to update your project and remove deprecated calls
+              or your builds will no longer be supported.
+
+              See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+              ********************************************************************************
+
+      !!
+        corresp(dist, value, root_dir)
+      C:\Users\yashk\AppData\Local\Temp\pip-build-env-ug6mk94b\overlay\Lib\site-packages\setuptools\config\_apply_pyprojecttoml.py:61: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+      !!
+
+              ********************************************************************************
+              Please consider removing the following classifiers in favor of a SPDX license expression:
+
+              License :: OSI Approved :: MIT License
+
+              See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+              ********************************************************************************
+
+      !!
+        dist._finalize_license_expression()
+      C:\Users\yashk\AppData\Local\Temp\pip-build-env-ug6mk94b\overlay\Lib\site-packages\setuptools\dist.py:759: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+      !!
+
+              ********************************************************************************
+              Please consider removing the following classifiers in favor of a SPDX license expression:
+
+              License :: OSI Approved :: MIT License
+
+              See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+              ********************************************************************************
+
+      !!
+        self._finalize_license_expression()
+      running bdist_wheel
+      running build
+      running build_py
+      creating build\lib.win-amd64-cpython-313\lru
+      copying src\lru\__init__.py -> build\lib.win-amd64-cpython-313\lru
+      running egg_info
+      writing src\lru_dict.egg-info\PKG-INFO
+      writing dependency_links to src\lru_dict.egg-info\dependency_links.txt
+      writing requirements to src\lru_dict.egg-info\requires.txt
+      writing top-level names to src\lru_dict.egg-info\top_level.txt
+      reading manifest file 'src\lru_dict.egg-info\SOURCES.txt'
+      reading manifest template 'MANIFEST.in'
+      warning: no files found matching 'MANIFEST'
+      warning: no previously-included files matching '*.pyc' found anywhere in distribution
+      warning: no previously-included files matching '*.cache' found anywhere in distribution
+      adding license file 'LICENSE'
+      writing manifest file 'src\lru_dict.egg-info\SOURCES.txt'
+      copying src\lru\__init__.pyi -> build\lib.win-amd64-cpython-313\lru
+      copying src\lru\py.typed -> build\lib.win-amd64-cpython-313\lru
+      running build_ext
+      building 'lru._lru' extension
+      error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+      [end of output]
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for lru-dict
+Successfully built libp2p py-cid
+Failed to build lru-dict
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> lru-dict
+LUCIFER007 E:\py-libp2p feat/804-add-thin-waist-address ≡ 25.8s                                                      
+py-libp2p >
