@@ -1,0 +1,64 @@
+sequenceDiagram
+    participant Client
+    participant MakePutRecord
+    participant NamespacedValidator
+    participant SplitKey
+    participant Validator
+    participant PublicKeyValidator
+    
+    Note over Client: Creates a new record
+    Client->>MakePutRecord: MakePutRecord(key, value)
+    MakePutRecord-->>Client: return new Record
+
+    Note over Client: Validates the record
+    Client->>NamespacedValidator: Validate(key, value)
+    
+    NamespacedValidator->>SplitKey: SplitKey(key)
+    SplitKey-->>NamespacedValidator: namespace, path, error
+    
+    alt Invalid key format
+        SplitKey-->>NamespacedValidator: ErrInvalidRecordType
+        NamespacedValidator-->>Client: ErrInvalidRecordType
+    end
+
+    NamespacedValidator->>NamespacedValidator: ValidatorByKey(key)
+    
+    alt namespace == "pk"
+        NamespacedValidator->>PublicKeyValidator: Validate(key, value)
+        
+        PublicKeyValidator->>SplitKey: SplitKey(key)
+        SplitKey-->>PublicKeyValidator: namespace, path, error
+        
+        PublicKeyValidator->>PublicKeyValidator: Verify namespace is 'pk'
+        PublicKeyValidator->>PublicKeyValidator: Validate multihash
+        PublicKeyValidator->>PublicKeyValidator: Unmarshal public key
+        PublicKeyValidator->>PublicKeyValidator: Generate peer ID
+        PublicKeyValidator->>PublicKeyValidator: Compare key hash
+        
+        alt Valid public key
+            PublicKeyValidator-->>NamespacedValidator: nil (success)
+            NamespacedValidator-->>Client: nil (success)
+        else Invalid public key
+            PublicKeyValidator-->>NamespacedValidator: error
+            NamespacedValidator-->>Client: error
+        end
+    else other namespace
+        NamespacedValidator->>Validator: Custom validator.Validate(key, value)
+        Validator-->>NamespacedValidator: result
+        NamespacedValidator-->>Client: result
+    end
+
+    Note over Client: Selects best record (if multiple exist)
+    Client->>NamespacedValidator: Select(key, []values)
+    
+    NamespacedValidator->>NamespacedValidator: ValidatorByKey(key)
+    
+    alt namespace == "pk"
+        NamespacedValidator->>PublicKeyValidator: Select(key, values)
+        PublicKeyValidator-->>NamespacedValidator: return 0, nil
+        NamespacedValidator-->>Client: index of selected record
+    else other namespace
+        NamespacedValidator->>Validator: Custom validator.Select(key, values)
+        Validator-->>NamespacedValidator: selected index
+        NamespacedValidator-->>Client: selected index
+    end
