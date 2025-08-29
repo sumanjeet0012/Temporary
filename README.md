@@ -1,4 +1,4 @@
-https://prod.liveshare.vsengsaas.visualstudio.com/join?1B6D68D6146D8582B681F864D4FD30D40025
+https://prod.liveshare.vsengsaas.visualstudio.com/join?78E3D9496D359B9B8C7A4975DF68C91F3796
 # libp2p Record Module - Complete Implementation Guide
 
 ## Table of Contents
