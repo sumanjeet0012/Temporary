@@ -1,0 +1,176 @@
+flowchart TD
+    A[Start: Host Creation] --> B[Initialize libp2p Identity]
+    B --> C[Create Transport Stack]
+    C --> D{Node Type?}
+    
+    D -->|Server| E[Create Rendezvous Server Behaviour]
+    D -->|Client| F[Create Rendezvous Client Behaviour]
+    
+    E --> G["Initialize Server Config
+    - min_ttl: 2h
+    - max_ttl: 72h
+    - max_namespace: 255"]
+    F --> H["Initialize Client Keypair
+    - For signing requests
+    - Authentication"]
+    
+    G --> I["Create request-response codec
+    Protocol: /rendezvous/1.0.0
+    Support: Inbound only"]
+    H --> J["Create request-response codec
+    Protocol: /rendezvous/1.0.0
+    Support: Outbound only"]
+    
+    I --> K["Initialize Registration Storage
+    - HashMap for peer registrations
+    - Cookie management
+    - TTL expiration tracking"]
+    J --> L["Initialize Client State
+    - waiting_for_register
+    - waiting_for_discovery
+    - discovered_peers
+    - registered_namespaces"]
+    
+    K --> M["Start Server Listening
+    Default: 0.0.0.0:62649"]
+    L --> N["Configure External Address
+    Either manual or via identify"]
+    
+    M --> O[Server Event Loop]
+    N --> P[Connect to Rendezvous Point]
+    
+    P --> Q{Connection Established?}
+    Q -->|No| R["Connection Failed
+    Retry or Error"]
+    Q -->|Yes| S[Connection to Rendezvous Point Success]
+    
+    S --> T{Client Action?}
+    T -->|Register| U[Registration Flow]
+    T -->|Discover| V[Discovery Flow]
+    T -->|Unregister| W[Unregistration Flow]
+    
+    %% Registration Flow
+    U --> U1["Create Register Message
+    - Namespace
+    - TTL (optional)
+    - Peer Record with addresses"]
+    U1 --> U2[Sign Registration with Private Key]
+    U2 --> U3[Send Register Request to Server]
+    U3 --> U4["Server: Validate Request
+    - Check peer_id matches signer
+    - Validate TTL bounds
+    - Check namespace length"]
+    U4 --> U5{Validation OK?}
+    U5 -->|No| U6["Send RegisterResponse Error
+    - NotAuthorized
+    - InvalidTtl
+    - InvalidNamespace"]
+    U5 -->|Yes| U7["Add to Registration Storage
+    - Store with expiration timer
+    - Generate registration ID"]
+    U7 --> U8["Send RegisterResponse Success
+    - Actual TTL granted"]
+    U8 --> U9["Client: Update registered_namespaces
+    - Track registration expiry
+    - Generate Registered Event"]
+    
+    %% Discovery Flow
+    V --> V1["Create Discover Message
+    - Namespace (optional)
+    - Cookie (optional)
+    - Limit (optional)"]
+    V1 --> V2[Send Discover Request to Server]
+    V2 --> V3["Server: Process Discovery
+    - Filter by namespace if specified
+    - Apply cookie for pagination
+    - Limit results if specified"]
+    V3 --> V4{Valid Cookie?}
+    V4 -->|No| V5["Send DiscoverResponse Error
+    - InvalidCookie"]
+    V4 -->|Yes| V6["Retrieve Matching Registrations
+    - Filter active registrations
+    - Generate new cookie for pagination"]
+    V6 --> V7["Send DiscoverResponse Success
+    - List of registrations
+    - New cookie for next query"]
+    V7 --> V8["Client: Process Discovered Peers
+    - Update discovered_peers map
+    - Store addresses for each peer
+    - Generate Discovered Event"]
+    
+    %% Unregistration Flow
+    W --> W1["Create Unregister Message
+    - Namespace to remove"]
+    W1 --> W2[Send Unregister Request]
+    W2 --> W3["Server: Remove Registration
+    - Remove from storage
+    - Cancel expiration timer"]
+    W3 --> W4["Generate PeerUnregistered Event
+    - No response needed"]
+    W4 --> W5["Client: Update State
+    - Remove from registered_namespaces
+    - Cancel local expiry tracking"]
+    
+    %% Server Event Loop Details
+    O --> O1[Poll for Events]
+    O1 --> O2{Event Type?}
+    O2 -->|Registration Expired| O3["Generate RegistrationExpired Event
+    - Remove from storage
+    - Notify application"]
+    O2 -->|Inbound Request| O4[Process Request via handle_request]
+    O2 -->|Connection Event| O5[Handle Connection State Changes]
+    
+    O4 --> O6{Request Type?}
+    O6 -->|Register| U4
+    O6 -->|Discover| V3
+    O6 -->|Unregister| W3
+    
+    O3 --> O1
+    O5 --> O1
+    U6 --> O1
+    U8 --> O1
+    V5 --> O1
+    V7 --> O1
+    W4 --> O1
+    
+    %% Client Polling
+    U9 --> C1[Client Poll Loop]
+    V8 --> C1
+    W5 --> C1
+    C1 --> C2[Check Expiring Registrations]
+    C2 --> C3[Poll Request-Response Behaviour]
+    C3 --> C4{Response Received?}
+    C4 -->|Yes| C5["Process Response
+    - Update internal state
+    - Generate events"]
+    C4 -->|No| C6[Handle Timeouts/Failures]
+    C5 --> C1
+    C6 --> C1
+    
+    %% TTL and Expiration Management
+    U7 --> TTL1["Start TTL Timer
+    - Default: 2 hours
+    - Range: 2h-72h"]
+    TTL1 --> TTL2[TTL Expiration Check]
+    TTL2 --> TTL3{TTL Expired?}
+    TTL3 -->|Yes| TTL4["Remove Registration
+    - Generate RegistrationExpired
+    - Clean up storage"]
+    TTL3 -->|No| TTL2
+    TTL4 --> O1
+    
+    %% Error Handling
+    R --> ERROR1[Handle Connection Errors]
+    ERROR1 --> ERROR2[Retry Logic or Propagate Error]
+    ERROR2 --> P
+    
+    style A fill:#e1f5fe
+    style D fill:#fff3e0
+    style T fill:#fff3e0
+    style U5 fill:#fff3e0
+    style V4 fill:#fff3e0
+    style O2 fill:#fff3e0
+    style O6 fill:#fff3e0
+    style C4 fill:#fff3e0
+    style TTL3 fill:#fff3e0
+    style Q fill:#fff3e0
