@@ -1,0 +1,84 @@
+<settings>
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven.sonar-maven-plugin</pluginGroup>
+    </pluginGroups>
+
+    <mirrors>
+        <mirror>
+            <id>nexus</id>
+            <name>nexus repo</name>
+            <url>http://10.10.204.46:8080/repository/maven-public/</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+   <profiles>
+
+    <profile>
+        <id>space</id>
+
+        <repositories>
+            <repository>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                </snapshots>
+                <id>central</id>
+                <name>mirror of central repo</name>
+                <url>http://10.10.204.46:8080/repository/maven-central/</url>
+            </repository>
+            <repository>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                </snapshots>
+                <id>uidai</id>
+                <name>uidai artifacts</name>
+                <url>http://10.10.204.46:8080/repository/uidai-artifactory/</url>
+            </repository>
+        </repositories>
+        <pluginRepositories>
+            <pluginRepository>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>true</enabled>
+                </snapshots>
+                <id>uidai</id>
+                <url>http://10.10.204.46:8080/repository/uidai-artifactory/</url>
+            </pluginRepository>
+        </pluginRepositories>
+    </profile>
+
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+        <properties>
+              <sonar.host.url>http://10.10.205.209:9000/</sonar.host.url>
+              <sonar.login>admin</sonar.login>
+              <sonar.password>admin123</sonar.password>
+      </properties>
+    </profile>
+
+  </profiles>
+
+  <activeProfiles>
+      <activeProfile>space</activeProfile>
+  </activeProfiles>
+
+  <localRepository>C:/Users/sumanjeet.tcs/.m2/repository</localRepository>
+
+  <servers>
+     <server>
+        <id>nexus</id>
+        <username>admin</username>
+        <password>admin123</password>
+     </server>
+  </servers>
+</settings>
