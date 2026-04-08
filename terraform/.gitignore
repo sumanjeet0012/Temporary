@@ -1,0 +1,12 @@
+# Terraform state — never commit these
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+
+# Your secrets — never commit these
+terraform.tfvars
+.env
+
+# Lambda build artifact
+lambda_function.zip
