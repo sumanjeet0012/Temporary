@@ -1,0 +1,28 @@
+curl --location 'https://backofficestage.uidai.gov.in/resident-grievance-management/api/grievance/v1/processUc' \
+--header 'Accept: application/json, text/plain, */*' \
+--header 'Accept-Language: en-US,en;q=0.9' \
+--header 'AppID: BACKOFFICE' \
+--header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5OTk5NDk0MDEyMDkiLCJ1c2VyX25hbWUiOiJQcmVtIFNhaSIsInNjb3BlIjpbIlJFQUQiXSwiZXhwIjoxNzc1ODIxMjU2LCJhdXRob3JpdGllcyI6WyJSZXNpZGVudCJdLCJqdGkiOiIrVUlDRHhuY3l6ZWtpejIvRU04aVAwdEJIeVE9IiwiY2xpZW50X2lkIjoiYTU4ZjI5ZDFjNDE5NjE2MjgxNWEyMTEzYmYxYWFlYjkuZGV2LmJhY2tvZmZpY2UifQ.BQYkQKW9VaHbyEgbiFpS2m9xld9ckeUvyeOEQVrRFxwAYGTldEPowtDjla0DPimh9Okph6NQkkV9QywHqM8_AdOZ1It1WlQptgOrefly1ZQlAUA2uGkjPiz4xLRWE-idYqA_IMtC2YdqV_v38VtDPki5uVMrApvWuWreDWsc2yD559Rs_xabQxrN7qCKjXKwl-jrU5pDXQCPDAuKmAOmQeg8cmcPq6Vvz55zU71U0oJjoD5DrA_bz3mE5mu4n1AAdSVDuOG8Np2rbhZ_i6hlk1iGQS8OuH0eNY7qtBCIwe-35KmsezUQ_iWjqnKjvUUQ3k4rizUgzzPn5sNWYFDsUQ' \
+--header 'Connection: keep-alive' \
+--header 'Content-Type: application/json' \
+--header 'Origin: http://localhost:30126' \
+--header 'Referer: http://localhost:30126/' \
+--header 'Sec-Fetch-Dest: empty' \
+--header 'Sec-Fetch-Mode: cors' \
+--header 'Sec-Fetch-Site: cross-site' \
+--header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0' \
+--header 'X-Request-ID: c2597a66-94ba-465c-a5a0-1ca61ed45203' \
+--header 'sec-ch-ua: "Chromium";v="146", "Not-A.Brand";v="24", "Microsoft Edge";v="146"' \
+--header 'sec-ch-ua-mobile: ?0' \
+--header 'sec-ch-ua-platform: "Windows"' \
+--data '{
+    "workflowId": "WFL-20260409160927-GRI-6455-00",
+    "requesterUserId": 45648918,
+    "requesterUserName": "Prem Sai",
+    "workflowAction": "APPROVE",
+    "workflowComments": "done",
+    "whitelistingRequired": "WHITELISTING_UPDATE_REQUIRED",
+    "roleName": "TC_DD",
+    "documents": [],
+    "nextNodeIndex": 10
+}'
