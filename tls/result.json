@@ -1,0 +1,66 @@
+{
+  "client_results": [
+    {
+      "cipher": [
+        "TLS_AES_256_GCM_SHA384",
+        "TLSv1.3",
+        256
+      ],
+      "host": "127.0.0.1",
+      "multistream_response": "/multistream/1.0.0",
+      "peer_cert_sent": false,
+      "port": 50887,
+      "selected_alpn": "libp2p",
+      "tls_handshake_completed": true,
+      "tls_select_response": "/tls/1.0.0"
+    },
+    {
+      "cipher": [
+        "TLS_AES_256_GCM_SHA384",
+        "TLSv1.3",
+        256
+      ],
+      "host": "127.0.0.1",
+      "multistream_response": "/multistream/1.0.0",
+      "peer_cert_sent": false,
+      "port": 50887,
+      "selected_alpn": "libp2p",
+      "tls_handshake_completed": true,
+      "tls_select_response": "/tls/1.0.0"
+    }
+  ],
+  "finding": "tls_inbound_fail_open",
+  "impact": "Two inbound TLS sessions were accepted even though the client sent no certificate and no libp2p identity, and each session was surfaced with a fresh synthetic placeholder peer identity.",
+  "listener_addr": "/ip4/127.0.0.1/tcp/50887/p2p/QmaJ89NRk7czo64j4XPcSECXQw9G8DNcUcfFBz45zj1jnd",
+  "official_entrypoint": "new_host(..., sec_opt={/tls/1.0.0: TLSTransport(...)})",
+  "server_observation": {
+    "accepted_session_count": 2,
+    "accepted_sessions": [
+      {
+        "accepted": true,
+        "local_peer": "QmaJ89NRk7czo64j4XPcSECXQw9G8DNcUcfFBz45zj1jnd",
+        "peer_cert_present": false,
+        "remote_address": [
+          "127.0.0.1",
+          46996
+        ],
+        "remote_peer": "12D3KooWKJsxS79HZrLKptWUHH6hQ1N3w2S1NigZ5eqaf5DPvUvK",
+        "used_placeholder_identity": true
+      },
+      {
+        "accepted": true,
+        "local_peer": "QmaJ89NRk7czo64j4XPcSECXQw9G8DNcUcfFBz45zj1jnd",
+        "peer_cert_present": false,
+        "remote_address": [
+          "127.0.0.1",
+          47008
+        ],
+        "remote_peer": "12D3KooWQTcgQ1oxBN9eFvEq1d28WkbrmQ2VV9P59G7oBtcfzLZH",
+        "used_placeholder_identity": true
+      }
+    ],
+    "all_sessions_used_placeholder_identity": true,
+    "distinct_placeholder_peer_ids": 2
+  },
+  "server_peer_id": "QmaJ89NRk7czo64j4XPcSECXQw9G8DNcUcfFBz45zj1jnd"
+}
