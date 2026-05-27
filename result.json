@@ -1,0 +1,34 @@
+{
+  "attacker_peer_id": "QmZaw8Fgi9fpLGgDyC41BeySkCwcUYPBbPL9Pwc8LymD7z",
+  "find_peer_result": {
+    "addrs": [
+      "/ip4/127.0.0.1/tcp/45935"
+    ],
+    "peer_id": "QmYL89K46sqRVYNQtiYapLn6ArCwNZ9vbatLDyfQzAxnTh"
+  },
+  "finding": "dht_signed_peerrecord_poisoning",
+  "forged_record_addrs": [
+    "/ip4/127.0.0.1/tcp/45935"
+  ],
+  "impact": "A forged signed PeerRecord for an arbitrary target peer ID was accepted through the official DHT find_peer path, poisoning the victim's certified address book so the target peer ID resolved to attacker-controlled addresses, and a later official host.connect() attempt was redirected to the poisoned endpoint.",
+  "official_entrypoint": "KadDHT.find_peer() over /ipfs/kad/1.0.0",
+  "poisoned_dial_observation": {
+    "sink_accepted_connection": true,
+    "sink_first_bytes_hex": "132f6d756c746973747265616d2f312e302e300a",
+    "sink_first_bytes_len": 20,
+    "sink_remote_address": [
+      "127.0.0.1",
+      45702
+    ],
+    "victim_connect_error": "unable to connect to QmYL89K46sqRVYNQtiYapLn6ArCwNZ9vbatLDyfQzAxnTh, no addresses established a successful connection (with exceptions)",
+    "victim_connect_reached_poisoned_addr": true
+  },
+  "signer_matches_record_peer_id": false,
+  "stored_envelope_record_peer_id": "QmYL89K46sqRVYNQtiYapLn6ArCwNZ9vbatLDyfQzAxnTh",
+  "stored_envelope_signer_peer_id": "QmZaw8Fgi9fpLGgDyC41BeySkCwcUYPBbPL9Pwc8LymD7z",
+  "target_peer_id": "QmYL89K46sqRVYNQtiYapLn6ArCwNZ9vbatLDyfQzAxnTh",
+  "victim_peer_id": "QmQJXwmmwaS3fRwnd35iCtzTTMW16PXFZR744cLcbRdtRV",
+  "victim_peerstore_addrs_for_target": [
+    "/ip4/127.0.0.1/tcp/45935"
+  ]
+}
