@@ -34,3 +34,15 @@ To resolve this issue, developers should investigate the following areas:
    - Check if the `rust-v0.56` relay requires specific flags to properly respond to `multistream-select` immediately.
 3. **Nim Connection Timeout (`interop/hole-punching/hole_punching.nim:90`)**:
    - While the root cause is environmental or relay-specific, the Nim implementation handles the timeout correctly by raising an `AsyncTimeoutError`. Developers can add more granular debug logging in `nim-libp2p`'s multistream-select module to determine exactly which protocol handshake is hanging (e.g., `/noise` or `/yamux/1.0.0`) before the 30-second timeout hits.
+
+## Resolution (Fixed)
+After an iterative debugging session, the root cause was verified to be **Docker Virtual Ethernet Checksum Offloading**. 
+When the relay container replied with SYN-ACK packets, Docker's veth interface did not compute the TCP checksums correctly because of hardware offloading. When these packets arrived at the NAT routers (`dialer-router` and `listener-router`), `conntrack` saw the invalid checksums and marked the packets as `INVALID`. Consequently, `conntrack` failed to reverse-translate the destination IP addresses from the router's WAN IP back to the peer's LAN IP. The `INPUT` chain drop rules then silently dropped the packets, causing a TCP handshake timeout.
+
+**The fixes applied were:**
+1. Modified `images/linux/Dockerfile` to install `ethtool`.
+2. Updated `images/linux/run.sh` to include `iptables` `CHECKSUM` fill targets for outgoing packets (`iptables -t mangle -A POSTROUTING -p tcp -j CHECKSUM --checksum-fill`).
+3. Re-enabled the `INPUT DROP` rule in `images/linux/run.sh` to properly simulate the NAT and drop un-tracked packets (to avoid TCP RSTs).
+4. Modified the Docker Compose generation in `lib/run-single-test.sh` to inject the `net.netfilter.nf_conntrack_checksum=0` sysctl into the routers. This forces `conntrack` to ignore checksum verification on incoming packets and allows it to successfully track and translate the Relay's SYN-ACK packets.
+
+All 6 failing tests now successfully pass.
