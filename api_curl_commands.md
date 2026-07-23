@@ -91,17 +91,13 @@ curl -s http://52.7.200.90:5001/debug/conns
 
 ---
 
-## ❌ Not Working APIs (Timed out / Hanging)
-
-The following endpoints hang indefinitely or time out on this specific node, likely due to proxy blocking or a bug in the multipart upload chunking code inside `py-ipfs-lite`'s `files_service`.
-
 ### `POST /api/v0/add`
 **Purpose:** Adds a file to IPFS.
 **Command:** 
 ```bash
 curl -s -X POST -F file=@"hello.txt" http://52.7.200.90:5001/api/v0/add
 ```
-**Status:** Request times out without receiving a response.
+**Output:** `{"Name":"hello.txt","Hash":"...","Size":"..."}`
 
 ---
 
@@ -111,4 +107,4 @@ curl -s -X POST -F file=@"hello.txt" http://52.7.200.90:5001/api/v0/add
 ```bash
 curl -s -X POST "http://52.7.200.90:5001/api/v0/cat?arg=QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG"
 ```
-**Status:** Request times out without receiving a response.
+**Output:** *(Returns the raw file contents)*
