@@ -1,6 +1,6 @@
-# py-ipfs-lite API Status Report (52.7.200.90)
+# py-ipfs-lite API Status Report (52.7.183.75)
 
-This document provides a report on the HTTP API endpoints for the old node running at `http://52.7.200.90:5001`. It categorizes the APIs into those that are working (responsive) and those that are hanging or broken.
+This document provides a report on the HTTP API endpoints for the old node running at `http://52.7.183.75:5001`. It categorizes the APIs into those that are working (responsive) and those that are hanging or broken.
 
 ---
 
@@ -11,7 +11,7 @@ These endpoints respond in a timely manner and return the expected IPFS/Kubo com
 ### `POST /api/v0/version`
 Returns the software version of the daemon.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/version
+curl -s -X POST http://52.7.183.75:5001/api/v0/version
 ```
 **Output:** `{"Version":"0.1.1","Commit":"","System":"py-ipfs-lite"}`
 
@@ -20,7 +20,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/version
 ### `POST /api/v0/id`
 Retrieves the node's cryptographic Peer ID and multiaddrs.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/id
+curl -s -X POST http://52.7.183.75:5001/api/v0/id
 ```
 **Output:** `{"ID":"12D3KooW...","Addresses":["/ip4/..."]}`
 
@@ -29,7 +29,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/id
 ### `POST /api/v0/swarm/peers`
 Lists connected peers.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/swarm/peers
+curl -s -X POST http://52.7.183.75:5001/api/v0/swarm/peers
 ```
 **Output:** `{"count": 273, "peers": ["12D3KooW..."]}`
 
@@ -38,7 +38,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/swarm/peers
 ### `POST /api/v0/swarm/connect`
 Connect to a remote peer.
 ```bash
-curl -s -X POST "http://52.7.200.90:5001/api/v0/swarm/connect?arg=/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ"
+curl -s -X POST "http://52.7.183.75:5001/api/v0/swarm/connect?arg=/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ"
 ```
 
 ---
@@ -46,7 +46,7 @@ curl -s -X POST "http://52.7.200.90:5001/api/v0/swarm/connect?arg=/ip4/104.131.1
 ### `POST /api/v0/block/put`
 Store a raw block.
 ```bash
-curl -s -X POST -F file=@"block.bin" http://52.7.200.90:5001/api/v0/block/put
+curl -s -X POST -F file=@"block.bin" http://52.7.183.75:5001/api/v0/block/put
 ```
 
 ---
@@ -54,7 +54,7 @@ curl -s -X POST -F file=@"block.bin" http://52.7.200.90:5001/api/v0/block/put
 ### `POST /api/v0/repo/stat`
 Returns datastore statistics.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/repo/stat
+curl -s -X POST http://52.7.183.75:5001/api/v0/repo/stat
 ```
 
 ---
@@ -62,7 +62,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/repo/stat
 ### `POST /api/v0/repo/gc`
 Performs garbage collection.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/repo/gc
+curl -s -X POST http://52.7.183.75:5001/api/v0/repo/gc
 ```
 
 ---
@@ -70,7 +70,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/repo/gc
 ### `POST /api/v0/pin/ls`
 Lists pinned objects.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/pin/ls
+curl -s -X POST http://52.7.183.75:5001/api/v0/pin/ls
 ```
 
 ---
@@ -78,7 +78,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/pin/ls
 ### `POST /api/v0/debug/peerstore`
 Dump peerstore data.
 ```bash
-curl -s -X POST http://52.7.200.90:5001/api/v0/debug/peerstore
+curl -s -X POST http://52.7.183.75:5001/api/v0/debug/peerstore
 ```
 
 ---
@@ -86,7 +86,7 @@ curl -s -X POST http://52.7.200.90:5001/api/v0/debug/peerstore
 ### `GET /debug/conns`
 Get total active connections.
 ```bash
-curl -s http://52.7.200.90:5001/debug/conns
+curl -s http://52.7.183.75:5001/debug/conns
 ```
 
 ---
@@ -95,7 +95,7 @@ curl -s http://52.7.200.90:5001/debug/conns
 **Purpose:** Adds a file to IPFS.
 **Command:** 
 ```bash
-curl -s -X POST -F file=@"hello.txt" http://52.7.200.90:5001/api/v0/add
+curl -s -X POST -F file=@"hello.txt" http://52.7.183.75:5001/api/v0/add
 ```
 **Output:** `{"Name":"hello.txt","Hash":"...","Size":"..."}`
 
@@ -105,6 +105,6 @@ curl -s -X POST -F file=@"hello.txt" http://52.7.200.90:5001/api/v0/add
 **Purpose:** Fetches a file by its CID.
 **Command:** 
 ```bash
-curl -s -X POST "http://52.7.200.90:5001/api/v0/cat?arg=QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG"
+curl -s -X POST "http://52.7.183.75:5001/api/v0/cat?arg=QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG"
 ```
 **Output:** *(Returns the raw file contents)*
